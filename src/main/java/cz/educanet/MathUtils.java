@@ -1,5 +1,7 @@
 package cz.educanet;
 
+import java.util.ArrayList;
+
 public class MathUtils {
 
     /**
@@ -13,7 +15,14 @@ public class MathUtils {
      * @return GCD
      */
     public static int findGreatestCommonDenominator(int a, int b) {
-        throw new UnsupportedOperationException();
+        ArrayList<Integer> aDenominators = new ArrayList<>();
+        for (int i = 1; i <= a; i++) {
+            if( (float) a / i == Math.floor((float) a / i)) aDenominators.add(i);
+        }
+        for (int i = b; i  != 0; i--) {
+            if( ((float) b / i == Math.floor((float) b / i)) && aDenominators.contains(i) ) return i;
+        }
+        return -1;
     }
 
     /**
@@ -27,7 +36,19 @@ public class MathUtils {
      * @return GCD
      */
     public static int findLowestCommonMultiple(int a, int b) {
-        throw new UnsupportedOperationException();
+        ArrayList<Integer> aMultiples = new ArrayList<>();
+        int a1, b1;
+        for (int i = 1; i <= b; i++) {
+            a1 = a*i;
+            aMultiples.add(a1);
+        }
+
+        for (int i = 1; i < a; i++) {
+            b1 = b*i;
+            if(aMultiples.contains(b1)) return b1;
+        }
+
+        return -1;
     }
 
 }

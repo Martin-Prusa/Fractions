@@ -17,7 +17,11 @@ public class Fraction {
      * @return new fraction
      */
     public Fraction plus(Fraction other) {
-        throw new UnsupportedOperationException();
+        int nsn = MathUtils.findLowestCommonMultiple(denominator, other.getDenominator());
+        int rozdilA = nsn/denominator;
+        int rozdilB = nsn/other.getDenominator();
+
+        return new Fraction(numerator*rozdilA + other.getNumerator()*rozdilB, nsn);
     }
 
     /**
@@ -26,7 +30,11 @@ public class Fraction {
      * @return new fraction
      */
     public Fraction minus(Fraction other) {
-        throw new UnsupportedOperationException();
+        int nsn = MathUtils.findLowestCommonMultiple(denominator, other.getDenominator());
+        int rozdilA = nsn/denominator;
+        int rozdilB = nsn/other.getDenominator();
+
+        return new Fraction(numerator*rozdilA - other.getNumerator()*rozdilB, nsn);
     }
 
     /**
@@ -35,7 +43,9 @@ public class Fraction {
      * @return new fraction
      */
     public Fraction times(Fraction other) {
-        throw new UnsupportedOperationException();
+        int dn = denominator * other.getDenominator();
+        int nm = numerator * other.getNumerator();
+        return new Fraction(nm, dn);
     }
 
     /**
@@ -44,7 +54,9 @@ public class Fraction {
      * @return new fraction
      */
     public Fraction dividedBy(Fraction other) {
-        throw new UnsupportedOperationException();
+        int dn = denominator * other.getNumerator();
+        int nm = numerator * other.getDenominator();
+        return new Fraction(nm, dn);
     }
     //endregion
 
@@ -54,7 +66,7 @@ public class Fraction {
      * @return new fraction
      */
     public Fraction getReciprocal() {
-        throw new UnsupportedOperationException();
+        return new Fraction(denominator, numerator);
     }
 
     /**
@@ -62,7 +74,8 @@ public class Fraction {
      * @return new fraction
      */
     public Fraction simplify() {
-        throw new UnsupportedOperationException();
+        int nsd = MathUtils.findGreatestCommonDenominator(numerator, denominator);
+        return new Fraction(numerator/nsd, denominator/nsd);
     }
 
     /**
@@ -70,7 +83,7 @@ public class Fraction {
      * @return float
      */
     public float toFloat() {
-        throw new UnsupportedOperationException();
+        return (float) numerator/(float) denominator;
     }
     //endregion
 
